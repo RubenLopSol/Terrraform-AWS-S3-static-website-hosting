@@ -1,0 +1,87 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+header {
+    background-color: #333;
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+}
+header h1 {
+    margin: 0;
+    font-size: 2.5em;
+}
+nav {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+nav a {
+    margin: 0 15px;
+    text-decoration: none;
+    color: #f6ecec;
+    font-weight: bold;
+}
+section {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.projects, .about, .contact {
+    margin-bottom: 40px;
+}
+.projects h2, .about h2, .contact h2 {
+    font-size: 2em;
+    margin-bottom: 10px;
+    color: #333;
+    text-align: center;
+}
+.project-item {
+    margin-bottom: 20px;
+    
+}
+.project-item h3 {
+    margin: 0;
+    text-align: center;
+}
+.project-item a {
+    text-decoration: none;
+    color: #3498db;
+    font-weight: bold;
+    padding-bottom: 3px;
+    transition: all 0.3s ease;
+   
+}
+.links {
+    display: flex;
+    justify-content: left;
+    margin: auto;
+}
+.links a {
+    margin: auto;
+    text-decoration: none;
+    color: #090909;
+    font-weight: bold;
+
+}
+.contact p {
+    text-align: center;
+}
+.contact p a {
+    text-decoration: none;
+    color: #3498db;
+    font-weight: bold;
+    padding-bottom: 3px;
+    transition: all 0.3s ease;
+}
+footer {
+    text-align: center;
+    padding: 10px 0;
+    background-color: #333;
+    color: white;
+}
