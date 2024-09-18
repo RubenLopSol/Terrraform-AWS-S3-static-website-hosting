@@ -20,6 +20,8 @@ resource "aws_s3_object" "index" {
   key          = "index.html"
   source       = "assets/index.html"
   content_type = "text/html"
+
+  depends_on = [aws_s3_bucket.bucket_1]
 }
 
 resource "aws_s3_object" "error" {
@@ -27,6 +29,8 @@ resource "aws_s3_object" "error" {
   key          = "error.html"
   source       = "assets/error.html"
   content_type = "text/html"
+
+  depends_on = [aws_s3_bucket.bucket_1]
 }
 
 resource "aws_s3_object" "style" {
@@ -34,6 +38,8 @@ resource "aws_s3_object" "style" {
   key          = "style.css"
   source       = "assets/style.css"
   content_type = "text/css"
+
+  depends_on = [aws_s3_bucket.bucket_1]
 }
 
 resource "aws_s3_bucket_website_configuration" "bucket_1" {
@@ -66,4 +72,32 @@ resource "aws_s3_bucket_policy" "public_read_access" {
   ]
   }
   EOF
+}
+
+resource "aws_iam_policy" "s3_bucket_policy_permissions" {
+  name        = "S3BucketPolicyPermissions"
+  description = "Permissions for managing S3 bucket policies"
+  policy      = <<EOF
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:PutBucketPolicy",
+                "s3:PutObject"
+            ],
+            "Resource": [
+                "arn:aws:s3:::web-bucket-ruben",
+                "arn:aws:s3:::web-bucket-ruben/*"
+            ]
+        }
+    ]
+}
+EOF
+}
+
+resource "aws_iam_user_policy_attachment" "attach_policy" {
+  user       = "rubenlopsol"
+  policy_arn = aws_iam_policy.s3_bucket_policy_permissions.arn
 }
