@@ -1,6 +1,9 @@
 
 ## Static Website Hosting Terraform, AWS, S3.
  In this project, I developed a streamlined infrastructure for hosting a static website using Terraform and Amazon Web Services (AWS) S3. The primary goal of this project is to demonstrate the automated provisioning and deployment of a web hosting solution for static websites.
+
+![Structure](2024-09-19_17-36.png)
+
 ## Requirements
 
 No requirements.
