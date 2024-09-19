@@ -1,4 +1,4 @@
 
 output "website_endpoint" {
-  value = "http://${aws_s3_bucket.bucket_1.bucket}.s3-website-${var.region}.amazonaws.com"
+  value = aws_s3_bucket_website_configuration.bucket_1.website_endpoint
 }

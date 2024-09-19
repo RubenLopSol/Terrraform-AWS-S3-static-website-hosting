@@ -14,33 +14,6 @@ resource "aws_s3_bucket_public_access_block" "bucket_1" {
   ignore_public_acls      = false
   restrict_public_buckets = false
 }
-# Upload content to bucket
-resource "aws_s3_object" "index" {
-  bucket       = "web-bucket-ruben"
-  key          = "index.html"
-  source       = "assets/index.html"
-  content_type = "text/html"
-
-  depends_on = [aws_s3_bucket.bucket_1]
-}
-
-resource "aws_s3_object" "error" {
-  bucket       = "web-bucket-ruben"
-  key          = "error.html"
-  source       = "assets/error.html"
-  content_type = "text/html"
-
-  depends_on = [aws_s3_bucket.bucket_1]
-}
-
-resource "aws_s3_object" "style" {
-  bucket       = "web-bucket-ruben"
-  key          = "style.css"
-  source       = "assets/style.css"
-  content_type = "text/css"
-
-  depends_on = [aws_s3_bucket.bucket_1]
-}
 
 resource "aws_s3_bucket_website_configuration" "bucket_1" {
   bucket = aws_s3_bucket.bucket_1.id
@@ -53,6 +26,30 @@ resource "aws_s3_bucket_website_configuration" "bucket_1" {
     key = "error.html"
   }
 }
+
+# Upload content to bucket
+resource "aws_s3_object" "index" {
+  bucket       = "web-bucket-ruben"
+  key          = "index.html"
+  source       = "assets/index.html"
+  content_type = "text/html"
+}
+
+resource "aws_s3_object" "error" {
+  bucket       = "web-bucket-ruben"
+  key          = "error.html"
+  source       = "assets/error.html"
+  content_type = "text/html"
+}
+
+resource "aws_s3_object" "style" {
+  bucket       = "web-bucket-ruben"
+  key          = "style.css"
+  source       = "assets/style.css"
+  content_type = "text/css"
+}
+
+
 
 resource "aws_s3_bucket_policy" "public_read_access" {
   bucket = aws_s3_bucket.bucket_1.id
@@ -74,30 +71,3 @@ resource "aws_s3_bucket_policy" "public_read_access" {
   EOF
 }
 
-resource "aws_iam_policy" "s3_bucket_policy_permissions" {
-  name        = "S3BucketPolicyPermissions"
-  description = "Permissions for managing S3 bucket policies"
-  policy      = <<EOF
-{
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Effect": "Allow",
-            "Action": [
-                "s3:PutBucketPolicy",
-                "s3:PutObject"
-            ],
-            "Resource": [
-                "arn:aws:s3:::web-bucket-ruben",
-                "arn:aws:s3:::web-bucket-ruben/*"
-            ]
-        }
-    ]
-}
-EOF
-}
-
-resource "aws_iam_user_policy_attachment" "attach_policy" {
-  user       = "rubenlopsol"
-  policy_arn = aws_iam_policy.s3_bucket_policy_permissions.arn
-}
