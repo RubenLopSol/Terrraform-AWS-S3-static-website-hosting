@@ -37,4 +37,4 @@ No modules.
 
 | Name | Description |
 |------|-------------|
-| <a name="output_website_endpoint"></a> [website\_endpoint](#output\_website\_endpoint) | n/a |
+| <a name="output_website_endpoint"></a> [website\_endpoint](#output\_website\_endpoint) | aws_s3_bucket_website_configuration.bucket_1.website_endpoint |
